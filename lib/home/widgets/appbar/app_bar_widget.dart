@@ -8,13 +8,14 @@ class AppBarWidget extends PreferredSize {
     preferredSize: Size.fromHeight(250),
     child: Container(
       height: 250,
-      decoration: BoxDecoration(gradient: AppGradients.linear),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Row(
+      child: Stack(
+        children: [
+          Container(
+            height: 161,
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            width: double.maxFinite,
+            decoration: BoxDecoration(gradient: AppGradients.linear),
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text.rich(TextSpan(text: "Olá, ", style: AppTextStyles.title,
@@ -30,9 +31,11 @@ class AppBarWidget extends PreferredSize {
                     "https://avatars.githubusercontent.com/u/32462349?v=4"))
                 ),)
             ],),
-            ScoreCardWidget(),
-          ],
-        ),
+          ),
+          Align(
+            alignment: Alignment(0.0,1.0),
+            child: ScoreCardWidget()),
+        ],
       ),
     ),
   );
