@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
     controller.getUser();
     controller.getQuizzes();
     controller.stateNotifier.addListener(() {
-      setState((){});
+      setState(() {});
     });
   }
 
@@ -60,19 +60,23 @@ class _HomePageState extends State<HomePage> {
                     mainAxisSpacing: 16,
                     crossAxisSpacing: 16,
                     crossAxisCount: 2,
-                    children: 
-              controller.quizzes!
+                    children: controller.quizzes!
                         .map((e) => QuizCardWidget(
                               title: e.title,
                               completed:
                                   "${e.questionsAnswered}/${e.questions.length}",
                               percent: e.questionsAnswered / e.questions.length,
                               onTap: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => ChallengePage(questions: e.questions,)));
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ChallengePage(
+                                              questions: e.questions,
+                                              title: e.title,
+                                            )));
                               },
                             ))
-                        .toList()
-               ),
+                        .toList()),
               )
             ],
           ),
@@ -80,9 +84,7 @@ class _HomePageState extends State<HomePage> {
       );
     } else {
       return Scaffold(
-        body: Center(child: CircularProgressIndicator(
-
-        )),
+        body: Center(child: CircularProgressIndicator()),
       );
     }
   }
